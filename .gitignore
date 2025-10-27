@@ -1,1 +1,10 @@
+# Enviromental variables
 /.venv
+MovieWebApp.code-workspace
+sampledata.archive
+app/__pycache__/database.cpython-39.pyc
+app/__pycache__/main.cpython-39.pyc
+app/__pycache__/pymongo_get_database.cpython-313.pyc
+app/routers/__pycache__/api.cpython-39.pyc
+app/routers/__pycache__/pages.cpython-39.pyc
+.DS_Store
