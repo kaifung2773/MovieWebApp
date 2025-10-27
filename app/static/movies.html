@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movie Web App</title>
+    </head>
+    <body>
+        <h1>Movie Database</h1>
+        <div id="movies"></div>
+        <div class="pagination">
+            <button onclick="loadPage(currentPage - 1)">Previous</button>
+            <span id="pageInfo"></span>
+            <button onclick="loadPage(currentPage + 1)">Next</button>
+        </div>
+
+        <script>
+            let currentPage = 1;
+            
+            async function loadMovies(page = 1, limit = 10) {
+                const response = await fetch(`/api/movies?page=${page}&limit=${limit}`);
+                const data = await response.json();
+                
+                const moviesDiv = document.getElementById('movies');
+                moviesDiv.innerHTML = data.movies.map(movie => 
+                    `<div class="movie">
+                        <h3>${movie.title}</h3>
+                        <p>Year: ${movie.year}</p>
+                     </div>`
+                ).join('');
+                
+                currentPage = page;
+                document.getElementById('pageInfo').textContent = `Page ${page}`;
+            }
+            
+            function loadPage(page) {
+                if (page >= 1) loadMovies(page);
+            }
+            
+            // Load first page on startup
+            loadMovies();
+        </script>
+    </body>
+</html>
